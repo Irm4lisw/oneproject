@@ -1,0 +1,39 @@
+// styleMenuList.scss
+.menu-bar {
+    // Add any additional styling here if needed
+  }
+  
+  .dark-mode {
+    background-color: #001529; // Dark background color
+    color: white; // Default text color for dark mode
+  
+    a {
+      color: white; // Link color in dark mode
+    }
+  
+    .ant-menu-item:hover {
+      background-color: rgba(255, 255, 255, 0.1); // Hover effect for dark mode
+    }
+  
+    .ant-menu-submenu-title:hover {
+      background-color: rgba(255, 255, 255, 0.1); // Hover effect for submenu
+    }
+  }
+  
+  .light-mode {
+    background-color: white; // Light background color
+    color: black; // Default text color for light mode
+  
+    a {
+      color: black; // Link color in light mode
+    }
+  
+    .ant-menu-item:hover {
+      background-color: rgba(0, 0, 0, 0.1); // Hover effect for light mode
+    }
+  
+    .ant-menu-submenu-title:hover {
+      background-color: rgba(0, 0, 0, 0.1); // Hover effect for submenu
+    }
+  }
+  
