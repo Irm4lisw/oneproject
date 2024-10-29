@@ -21,6 +21,12 @@ const Rating = () => {
     }
   }, [ratingsFromRedux]);
 
+  const removeRating = (id) => {
+    const updateRating = ratings.filter((movie) => movie.id !== id);
+    setRatings(updateRating);
+    localStorage.setItem("rating", JSON.stringify(updateRating));
+  };
+
   return (
     <div
       className={`${
@@ -57,7 +63,7 @@ const Rating = () => {
                 <p>{movie.release_date}</p>
               </Link>
               <div className="flex justify-center items-center mt-3">
-              <Delete/>
+                <Delete movieId={movie.id} onDelete={removeRating} />
               </div>
             </div>
           ))}

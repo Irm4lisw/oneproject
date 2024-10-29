@@ -55,9 +55,9 @@ const LoveButton = ({ movie }) => {
             right: "auto",
             bottom: "auto",
             transform: "translate(-50%, -50%)",
-            width: "500px", // Atur lebar modal
-            padding: "20px", // Tambahkan padding
-            borderRadius: "10px", // Tambahkan sudut melengkung
+            width: "500px", 
+            padding: "20px", 
+            borderRadius: "10px", 
           },
         }}
       >

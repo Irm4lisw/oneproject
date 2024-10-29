@@ -17,10 +17,11 @@ const CustomStyle = plugin(function ({ addUtilities }) {
     },
   });
 });
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {},
   },
-  plugins: [CustomStyle, require("daisyui")],
+  plugins: [ CustomStyle, require("daisyui")],
 };

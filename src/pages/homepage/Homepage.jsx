@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { setAll, setPopular, setTv, setPeople, setAllWeek } from "../../store/action/homepageAction";
 
 const Homepage = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();//digunakan untuk menirim aksi
   const { all = [], popular = [], tv = [], people = [], allweek = [] } = useSelector((state) => state.homepage || {}); 
+  //useselector digunakan untuk menggambil data dari store yang telah kita simpan
 
   const fetchData = async (url, action) => {
     try {
@@ -15,7 +16,9 @@ const Homepage = () => {
     } catch (error) {
       console.log(error.message); 
     }
-  };
+  }; 
+  //Fungsi ini menggunakan Axios untuk melakukan permintaan HTTP ke API. 
+  //Jika berhasil, data yang diterima akan dikirim ke Redux menggunakan fungsi pencipta aksi.
 
   const fetchConfigs = [
     { url: "https://api.themoviedb.org/3/trending/all/day?api_key=9d8b09a31dca488ef19fc861bfad934e", action: setAll },
@@ -23,15 +26,16 @@ const Homepage = () => {
     { url: "https://api.themoviedb.org/3/trending/tv/day?api_key=9d8b09a31dca488ef19fc861bfad934e", action: setTv },
     { url: "https://api.themoviedb.org/3/trending/person/day?api_key=9d8b09a31dca488ef19fc861bfad934e", action: setPeople },
     { url: "https://api.themoviedb.org/3/trending/all/week?api_key=9d8b09a31dca488ef19fc861bfad934e", action: setAllWeek },
-  ];
+  ]; //fetchconfig merupakan array yang digunakan untuk menyimpan data, url digunakan untuk mengambil data setelah data berhasil dipanggil akan disimpan oleh aksi yang diambil dari state redux
 
   useEffect(() => {
     fetchConfigs.forEach(({ url, action }) => fetchData(url, action));
   }, [dispatch]);
-
+  // setelah itu data dari url dan aksi akan disimpan ke data redux
 
   return (
     <HomepageView all={all} popular={popular} tv={tv} people={people} allweek={allweek} />
+    //digunkan untuk mengirim data ke halaman homepageview
   );
 };
 

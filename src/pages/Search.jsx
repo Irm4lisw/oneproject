@@ -59,7 +59,7 @@ const Search = () => {
               filter === "movie"
                 ? "bg-gray-800 text-white"
                 : "bg-white text-black"
-            } hover:bg-blue-400 hover:text-white transition`}
+            } hover:bg-slate-500 hover:text-white transition`}
           >
             Film
           </button>
@@ -67,7 +67,7 @@ const Search = () => {
             onClick={() => setFilter("tv")}
             className={`h-12 w-56 rounded-r-lg text-lg ${
               filter === "tv" ? "bg-gray-800 text-white" : "bg-white text-black"
-            } hover:bg-blue-400 hover:text-white transition`}
+            } hover:bg-slate-500 hover:text-white transition`}
           >
             TV
           </button>

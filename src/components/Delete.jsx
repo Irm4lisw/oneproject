@@ -1,9 +1,9 @@
-import { useDispatch } from 'react-redux';
-import { useState } from 'react';
-import Modal from 'react-modal'; 
-import { TrashIcon } from '@heroicons/react/24/solid';
+import { useState } from "react";
+import Modal from "react-modal";
+import { TrashIcon } from "@heroicons/react/24/solid";
+import { useDispatch } from "react-redux";
 
-const Delete = ({ movieId, onClose }) => {
+const Delete = ({ movieId, onDelete, onClose }) => {
   const dispatch = useDispatch();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [clicked, setClicked] = useState(false);
@@ -19,8 +19,7 @@ const Delete = ({ movieId, onClose }) => {
   };
 
   const confirmDelete = () => {
-    dispatch(deleteRating(movieId));
-    alert('Item deleted!');
+    onDelete(movieId);
     closeModal();
   };
 
@@ -31,14 +30,16 @@ const Delete = ({ movieId, onClose }) => {
         className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 
                 ${clicked ? "bg-red-600" : "bg-white"}`}
       >
-        <TrashIcon className={`h-5 w-5 ${clicked ? "text-white" : "text-red-600"}`} />
+        <TrashIcon
+          className={`h-5 w-5 ${clicked ? "text-white" : "text-red-600"}`}
+        />
       </button>
 
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Konfirmasi Hapus"
-        appElement={document.getElementById('root')}
+        appElement={document.getElementById("root")}
         style={{
           overlay: {
             backgroundColor: "rgba(0, 0, 0, 0.7)",
@@ -72,10 +73,8 @@ const Delete = ({ movieId, onClose }) => {
 
 export default Delete;
 
-
-
 // import { useState } from 'react';
-// import Modal from 'react-modal'; 
+// import Modal from 'react-modal';
 // import { TrashIcon } from '@heroicons/react/24/solid';
 
 // const Delete = () => {
@@ -100,7 +99,7 @@ export default Delete;
 //     <div>
 //       <button
 //         onClick={handleClick}
-//         className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 
+//         className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300
 //                 ${clicked ? "bg-red-600" : "bg-white"}`}
 //       >
 //         <TrashIcon

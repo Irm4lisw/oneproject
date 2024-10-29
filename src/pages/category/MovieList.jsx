@@ -57,7 +57,7 @@ const MovieList = () => {
           {genres.map((genre) => (
             <div
               key={genre.id}
-              className={`category-card p-5 rounded-lg shadow-lg transform transition-transform hover:scale-105 hover:shadow-2xl hover:bg-blue-900 cursor-pointer 
+              className={`category-card p-5 rounded-lg shadow-lg transform transition-transform hover:scale-105 hover:shadow-2xl hover:bg-gray-700 cursor-pointer 
               ${ isDarkMode ? "bg-gray-800 text-white" : "bg-gray-500 text-white"}`}
               onClick={() => fetchMoviesByGenre(genre.id, genre.name)}
             >

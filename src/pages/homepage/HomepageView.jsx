@@ -10,6 +10,7 @@ export default function HomepageView({
   people,
   allweek,
   darkTheme,
+  //menerima parameter berisi data yang kan ditampilkan pada halaman
 }) {
   const isDarkMode = useSelector((state) => state.theme.isDarkMode);
   const [currentPosterIndex, setCurrentPosterIndex] = useState(0);
@@ -24,27 +25,31 @@ export default function HomepageView({
     .map((all) => `https://image.tmdb.org/t/p/w500/${all.backdrop_path}`) || [
     defaultPoster,
   ];
+  //digunakan untuk menfilter data all yang memiliki backdrop
 
   const titles = all
     .filter((all) => all.backdrop_path)
     .map((all) => all.name || all.original_title);
+  //bila backdrop ada maka title akan diambil
 
-  const describe = all.filter((all) => all.overview).map((all) => all.overview);
+  const describe = all.filter((all) => all.overview).map((all) => all.overview); //digunakan untuk menggambil deskripsi
 
   useEffect(() => {
-    if (posters.length === 0) return;
+    if (posters.length === 0) return; //bila tidak ada poster akan menghentikan eksekusi
 
     const interval = setInterval(() => {
       setCurrentPosterIndex((prevIndex) => (prevIndex + 1) % posters.length);
-    }, 6000);
+    }, 6000);//akan menjalankan fungsi disetiap 6 detik akan memperbarui
 
     return () => clearInterval(interval);
+    //digunakan untuk membersihkan interval sebelumnya agar tidak berjalan ketika gambar lain dijalankan
   }, [posters.length]);
+  
 
   const handleSearch = (e) => {
     e.preventDefault();
     navigate(`/search/${searchQuery}`);
-  };
+  }; //bila pencarian dilakukan akan dipindahkan ke halaman search tanpa ada refresh halaman.
 
   return (
     <div
@@ -55,11 +60,6 @@ export default function HomepageView({
     >
       {posters.length > 0 && (
         <section className="relative">
-          {/* <div
-            className="w-full h-[330px] bg-cover bg-center "
-            style={{ backgroundImage: `url(${posters[currentPosterIndex]})`, 
-            transition: "background-image 1s ease-in-out",}}
-          > */}
           <div
             className="w-full h-[330px]"
             style={{
@@ -250,16 +250,6 @@ export default function HomepageView({
                               className="w-full h-full absolute top-0 left-0 -z-10 brightness-[60%] group-hover:scale-125 group-hover:brightness-90 duration-200"
                             />
                           </div>
-                          {/* <div className="absolute bottom-0 left-0 right-0 w-full h-[90px] bg-[#0F1823] bg-opacity-80 rounded-b-3xl p-3 flex flex-col justify-end transition-transform duration-300 group-hover:translate-y-0">
-                            <span className="font-bold text-lg text-neutral-300">
-                              {themoviedb.original_title ||
-                                themoviedb.original_name ||
-                                themoviedb.name}
-                            </span>
-                            <span className="font-normal text-neutral-200 text-xs line-clamp-2">
-                              {themoviedb.overview}
-                            </span>
-                          </div> */}
                           <div className="pt-2 pl-2">
                             <LoveButton popular={themoviedb} />
                           </div>
@@ -303,7 +293,7 @@ export default function HomepageView({
           Trending The Movies
         </h4>
 
-        <div className="w-full min-h-[350px] overflow-x-auto scrollbar-hide px-8 my-6 flex space-x-4">
+        <div className="w-full min-h-[375px] overflow-x-auto scrollbar-hide px-8 my-6 flex space-x-4">
           {popular.length > 0 ? (
             popular.map((themoviedb, index) => (
               <div
@@ -319,14 +309,6 @@ export default function HomepageView({
                           className="w-full h-full absolute top-0 left-0 -z-10 brightness-[60%] group-hover:scale-125 group-hover:brightness-90 duration-200"
                         />
                       </div>
-                      {/* <div className="absolute bottom-0 left-0 right-0 w-full h-[90px] bg-[#0F1823] bg-opacity-80 rounded-b-3xl p-3 flex flex-col justify-end transition-transform duration-300 group-hover:translate-y-0 pb-2">
-                        <span className="font-semibold text-lg text-neutral-300 pb-6">
-                          {themoviedb.original_title}
-                        </span> */}
-                      {/* <span className="font-normal text-neutral-200 text-xs line-clamp-2 mb-4">
-                          {themoviedb.overview}
-                        </span> */}
-                      {/* </div> */}
                       <div className="pt-2 pl-2">
                         <LoveButton popular={themoviedb} />
                       </div>
